@@ -2,9 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 def sigmoid(z):
-    tt = 1.0 / (1.0 + np.exp(-z))
-    #print (tt)
-    return tt 
+    return 1.0 / (1.0 + np.exp(-z))
 
 def costFunction(X,y,theta):
     m = len(y.T)
@@ -13,5 +11,4 @@ def costFunction(X,y,theta):
     z = X.dot(theta)
     J = (-y.dot(np.log(sigmoid(z))) - (1 - y).dot(np.log(1 - sigmoid(z)))) / m
     grad = (X.T.dot((sigmoid(z) - y.T))/m)
-    
     return J ,grad 
