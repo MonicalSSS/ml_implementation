@@ -1,7 +1,4 @@
 from logistic_regression import *
-import numpy as np
-import matplotlib.pyplot as plt
-
 
 def loadData():
     file1 = open("ex2data1.txt", "r")
@@ -28,9 +25,10 @@ if __name__ == "__main__":
     # plotScatter(X,y)
     n = len(X)
     m = len(X[0])  
-    print (n,m)
     X = np.c_[np.ones(m), X.T] # add one col
+    y = np.reshape(y,(1,m))
 
     initial_theta = np.zeros((n+1,1))
-    
+    cost,grad = costFunction(X,y,initial_theta)
+
     
