@@ -11,8 +11,8 @@ data
 
 - ex1data1.txt
 
-![scatter](https://github.com/quinwu/ml_implementation/blob/master/linear-regression/scatter.png)
+![scatter](https://github.com/quinwu/ml_implementation/blob/master/Linear-Regression/scatter.png)
 
 
 
-![LinearReg](https://github.com/quinwu/ml_implementation/blob/master/linear-regression/LinearReg.png)
+![LinearReg](https://github.com/quinwu/ml_implementation/blob/master/Linear-Regression/LinearReg.png)
