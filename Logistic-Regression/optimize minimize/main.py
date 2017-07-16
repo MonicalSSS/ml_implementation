@@ -3,10 +3,10 @@ import scipy.optimize as op
 import os
 
 def loadData():
-    path  = os.getcwd() + '/ex2data1.txt'
-    data = np.loadtxt(path,dtype=float,delimiter=',')
-    # path = os.getcwd() + '/testSet.txt'
-    # data = np.loadtxt(path)
+    # path  = os.getcwd() + '/ex2data1.txt'
+    # data = np.loadtxt(path,dtype=float,delimiter=',')
+    path = os.getcwd() + '/testSet.txt'
+    data = np.loadtxt(path)
     X = data[:,0:2]
     y = data[:,2]
     return X,y
@@ -37,7 +37,6 @@ def decisionBundary(theta):
     boundary_ys = (-1./theta[2])*(theta[0] + theta[1]*boundary_xs)
     plt.plot(boundary_xs,boundary_ys,'b-',label='Decision Boundary')
     plt.show()
-
 
 
 
