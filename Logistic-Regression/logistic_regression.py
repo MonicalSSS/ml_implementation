@@ -17,7 +17,6 @@ def gradient(theta,X, y):
     m = X.shape[0] #X.shape = (100,3)
     grad = np.zeros_like(theta)
     z = X.dot(theta.reshape(-1,1)) # theta.shape = (3,) theta.reshape(-1,1).shape = (3,1)
-    grad = (1.0 / m) * X.T.dot(( sigmoid(z) - y )) 
-    # grad =  X.T.dot(( sigmoid(z) - y )) 
+    grad = (1.0 / m) * X.T.dot(( sigmoid(z) - y ))  
     return grad.flatten()
 
