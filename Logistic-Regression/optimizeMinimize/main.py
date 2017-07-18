@@ -23,7 +23,7 @@ def plotScatter(path):
     plt.ylabel('Exam 2 score')
     plt.grid(True)
 
-def decisionBundary(theta,path):
+def decisionBoundary(theta,path):
     X,y = loadData(path)
     y = y.astype(int)
     neg = (y == 0)
@@ -39,14 +39,7 @@ def decisionBundary(theta,path):
     plt.ylabel('Exam 2 score')
     # plt.show()
 
-
-def optimizeRegularizedTheta(theta,X,y,lamb=0.):
-    result = op.minimize(costFunctionReg, theta, args=(lamb,X, y),  method='BFGS', options={"maxiter":500, "disp":False} )
-    #result = op.minimize(costFunctionReg, initial_theta, args=(lamb,X,y), method='BFGS', jac=gradientReg, options={'maxiter':400})
-    return np.array([result.x]), result.fun
-
-def plotBoundary(theta, X, y, lamb=0.):
-
+def decisionBoundaryReg(theta, X, y, lamb=0.):
     theta, mincost = optimizeRegularizedTheta(theta,X,y,lamb)
     xvals = np.linspace(-1,1.5,50)
     yvals = np.linspace(-1,1.5,50)
@@ -61,24 +54,25 @@ def plotBoundary(theta, X, y, lamb=0.):
     mycontour = plt.contour( xvals, yvals, zvals, [0])
     plt.title("Decision Boundary with Lambda = %d"%lamb)
 
+def optimizeRegularizedTheta(theta,X,y,lamb=0.):
+    result = op.minimize(costFunctionReg, theta, args=(lamb,X, y),  method='BFGS', options={"maxiter":500, "disp":False} )
+    #result = op.minimize(costFunctionReg, initial_theta, args=(lamb,X,y), method='BFGS', jac=gradientReg, options={'maxiter':400})
+    return np.array([result.x]), result.fun
 
-def plotBoundaryReg(path,theta,X,y):
+def subplotDecisionBoundary(path,theta,X,y):
     plt.figure(figsize=(12,10)) 
     plt.subplot(221)
     plotScatter(path)
-    plotBoundary(theta,X,y,0.)
-
+    decisionBoundaryReg(theta,X,y,0.)
     plt.subplot(222)
     plotScatter(path)
-    plotBoundary(theta,X,y,1.)
-
+    decisionBoundaryReg(theta,X,y,1.)
     plt.subplot(223)
     plotScatter(path)
-    plotBoundary(theta,X,y,10.)
-
+    decisionBoundaryReg(theta,X,y,10.)
     plt.subplot(224)
     plotScatter(path)
-    plotBoundary(theta,X,y,100.)
+    decisionBoundaryReg(theta,X,y,100.)
 
 def Logistic(path):
     plt.figure()
@@ -92,7 +86,7 @@ def Logistic(path):
     initial_theta = np.zeros(X.shape[1])
     res = op.minimize(costFunction, initial_theta, args=(X,y), method='TNC', jac=gradient, options={'maxiter':400})
     theta = res.x
-    decisionBundary(theta,path)
+    decisionBoundary(theta,path)
     plt.show()
 
 def LogisticReg(path):
@@ -107,7 +101,7 @@ def LogisticReg(path):
     initial_theta = np.zeros(X.shape[1])
     # cost = costFunctionReg(initial_theta,0,X,y)
     # print cost
-    plotBoundaryReg(ex2,initial_theta,X,y)
+    subplotDecisionBoundary(ex2,initial_theta,X,y)
     plt.show()
  
 
@@ -116,4 +110,4 @@ if __name__ == "__main__":
     ex2 = '/ex2data2.txt'
     testSet = '/testSet.txt'
     Logistic(ex1)
-    # LogisticReg(ex2)
+    LogisticReg(ex2)
