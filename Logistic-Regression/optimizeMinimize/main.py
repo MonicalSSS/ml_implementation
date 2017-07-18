@@ -28,7 +28,7 @@ def decisionBundary(theta,path):
     y = y.astype(int)
     neg = (y == 0)
     pos = (y == 1)
-    plt.figure()
+    # plt.figure()
     label1 = plt.scatter(X[neg,0],X[neg,1],marker='o',c='b')
     label2 = plt.scatter(X[pos,0],X[pos,1],marker='o',c='r')
     boundary_xs = np.array([np.min(X[:,0]), np.max(X[:,0])])
@@ -37,7 +37,7 @@ def decisionBundary(theta,path):
     plt.legend((label1,label2),('Admitted','Not admitted'))
     plt.xlabel('Exam 1 score')
     plt.ylabel('Exam 2 score')
-    plt.show()
+    # plt.show()
 
 
 def optimizeRegularizedTheta(theta,X,y,lamb=0.):
@@ -59,9 +59,6 @@ def plotBoundary(theta, X, y, lamb=0.):
 
     u, v = np.meshgrid( xvals, yvals )
     mycontour = plt.contour( xvals, yvals, zvals, [0])
-    #Kind of a hacky way to display a text on top of the decision boundary
-    # myfmt = { 0:'Lambda = %d'%lamb}
-    # plt.clabel(mycontour, inline=1, fontsize=15)
     plt.title("Decision Boundary with Lambda = %d"%lamb)
 
 
@@ -83,32 +80,40 @@ def plotBoundaryReg(path,theta,X,y):
     plotScatter(path)
     plotBoundary(theta,X,y,100.)
 
+def Logistic(path):
+    plt.figure()
+    plotScatter(path)
+    plt.show()
+    X,y = loadData(path)
+    m,n = X.shape
+    X = np.c_[np.ones((m,1)), X]  # add one col
+    # y = np.reshape(y,(m,1))
+    y= np.c_[y]
+    initial_theta = np.zeros(X.shape[1])
+    res = op.minimize(costFunction, initial_theta, args=(X,y), method='TNC', jac=gradient, options={'maxiter':400})
+    theta = res.x
+    decisionBundary(theta,path)
     plt.show()
 
+def LogisticReg(path):
+    plt.figure()
+    plotScatter(ex2)
+    plt.show()
+    X,y = loadData(path)
+    m,n = X.shape
+    X = np.c_[np.ones((m,1)), X]  # add one col
+    y= np.c_[y]
+    X = mapFeature(X[:,1],X[:,2])
+    initial_theta = np.zeros(X.shape[1])
+    # cost = costFunctionReg(initial_theta,0,X,y)
+    # print cost
+    plotBoundaryReg(ex2,initial_theta,X,y)
+    plt.show()
+ 
 
 if __name__ == "__main__":
     ex1 = '/ex2data1.txt'
     ex2 = '/ex2data2.txt'
     testSet = '/testSet.txt'
-    # X,y = loadData(ex1)
-    # plotScatter(ex1)
-    # m,n = X.shape
-    # X = np.c_[np.ones((m,1)), X]  # add one col
-    #y = np.reshape(y,(m,1))
-    # y= np.c_[y]
-    # initial_theta = np.zeros(X.shape[1])
-    # res = op.minimize(costFunction, initial_theta, args=(X,y), method='TNC', jac=gradient, options={'maxiter':400})
-    # theta = res.x
-    # decisionBundary(theta,ex1)
-
-    X,y = loadData(ex2)
-    m,n = X.shape
-    X = np.c_[np.ones((m,1)), X]  # add one col
-    y= np.c_[y]
-    # plotScatter(ex2)
-    X = mapFeature(X[:,1],X[:,2])
-    initial_theta = np.zeros(X.shape[1])
-    # cost = costFunctionReg(initial_theta,0,X,y)
-    # print cost
-
-    plotBoundaryReg(ex2,initial_theta,X,y)
+    Logistic(ex1)
+    # LogisticReg(ex2)
