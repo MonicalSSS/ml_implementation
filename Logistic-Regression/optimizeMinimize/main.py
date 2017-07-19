@@ -21,23 +21,15 @@ def plotScatter(path):
     plt.legend((lable1,lable2),('Admitted','Not admitted'))
     plt.xlabel('Exam 1 score')
     plt.ylabel('Exam 2 score')
-    plt.grid(True)
+    # plt.grid(True)
 
 def decisionBoundary(theta,path):
+    plotScatter(path)
     X,y = loadData(path)
     y = y.astype(int)
-    neg = (y == 0)
-    pos = (y == 1)
-    # plt.figure()
-    label1 = plt.scatter(X[neg,0],X[neg,1],marker='o',c='b')
-    label2 = plt.scatter(X[pos,0],X[pos,1],marker='o',c='r')
     boundary_xs = np.array([np.min(X[:,0]), np.max(X[:,0])])
     boundary_ys = (-1./theta[2])*(theta[0] + theta[1]*boundary_xs)
-    label3 = plt.plot(boundary_xs,boundary_ys)
-    plt.legend((label1,label2),('Admitted','Not admitted'))
-    plt.xlabel('Exam 1 score')
-    plt.ylabel('Exam 2 score')
-    # plt.show()
+    plt.plot(boundary_xs,boundary_ys)
 
 def decisionBoundaryReg(theta, X, y, lamb=0.):
     theta, mincost = optimizeRegularizedTheta(theta,X,y,lamb)
