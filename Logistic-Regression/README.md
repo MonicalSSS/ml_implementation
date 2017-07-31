@@ -1,37 +1,31 @@
-### 说明
+### Introduction
 
-数据来源于 Andrew Ng Machine Learning programming assigment ex2 跟 Machine Learning Action 
+logistic regression classification action
 
-Code
+### Code
 
-- [gradientDescent]()
+- [gradientDescent](https://github.com/quinwu/ml_implementation/tree/master/Logistic-Regression/gradientDescent)
   - main.py
-- [optimizeMinimize]()
+- [optimizeMinimize](https://github.com/quinwu/ml_implementation/tree/master/Logistic-Regression/optimizeMinimize)
   - main.py
   - logistic_regression.py
 - [MNIST-classifier](https://github.com/quinwu/ml_implementation/tree/master/Logistic-Regression/MNIST-classifier)
   - classifiers/logistic_regression.py
   - logistic_regression.ipynb
 
-data
+### Data
 
-- gradientDescent
-  - testSet.txt
-  - ex2data1.txt
-- optimizeMinmize
-  - testSet.txt
+datasets sources
+
+- `Andrew Ng Machine Learning programming assigment ex2`  
   - ex2data1.txt
   - ex2data2.txt
-- MNIST-classifier
-  - MNIST.csv
+- `Machine Learning Action`
+  - testSet.txt
+- `MNIST`
+  - MNIST.CSV
 
 
 
 
-![scatter1](https://github.com/quinwu/ml_implementation/blob/master/Logistic-Regression/optimizeMinimize/scatter1.png)
 
-![decisionBoundary1](https://github.com/quinwu/ml_implementation/blob/master/Logistic-Regression/optimizeMinimize/decisionBoundary1.png)
-
-![scatter2](https://github.com/quinwu/ml_implementation/blob/master/Logistic-Regression/optimizeMinimize/scatter2.png)
-
-![decisionBoundary2](https://github.com/quinwu/ml_implementation/blob/master/Logistic-Regression/optimizeMinimize/decisionBoundary2.png)
