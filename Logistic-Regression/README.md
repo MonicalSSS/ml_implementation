@@ -4,9 +4,9 @@
 
 Code
 
-- gradientDescent
+- [gradientDescent]()
   - main.py
-- optimizeMinimize
+- [optimizeMinimize]()
   - main.py
   - logistic_regression.py
 - [MNIST-classifier](https://github.com/quinwu/ml_implementation/tree/master/Logistic-Regression/MNIST-classifier)
